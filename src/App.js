@@ -21,7 +21,6 @@ export default function App() {
       </nav>
       {route === 'home' && <Home />}
       {route === 'catalog' && <Catalog />}
-      {route === 'recipe' && <Recipe />}
     </div>
   );
 }
