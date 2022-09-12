@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './style.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Home, Catalog } from './pages';
+import { Home, Catalog, ErrorPage } from './pages';
 import { Navbar } from './components/navbar/navbar.jsx';
 
 export default function App() {
@@ -12,7 +12,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/catalogo" element={<Catalog />} />
-          <Route path="*" element={<div>Pagina non trovata</div>} />
+          <Route path="*" element={<ErrorPage name="prova" status={404} />} />
         </Routes>
       </BrowserRouter>
     </div>
