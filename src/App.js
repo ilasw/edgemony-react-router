@@ -1,26 +1,20 @@
 import React, { useState } from 'react';
 import './style.css';
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Home, Catalog } from './pages';
+import { Navbar } from './components/navbar/navbar.jsx';
 
 export default function App() {
-  const [route, setRoute] = useState('home');
-
   return (
     <div>
-      <nav>
-        <ul>
-          {['home', 'catalog'].map((key) => (
-            <li key={key}>
-              <button disabled={route === key} onClick={() => setRoute(key)}>
-                {key}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </nav>
-      {route === 'home' && <Home />}
-      {route === 'catalog' && <Catalog />}
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/catalogo" element={<Catalog />} />
+          <Route path="*" element={<div>Pagina non trovata</div>} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

@@ -1,16 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const Home = () => {
   return (
     <div>
       <h1>Home</h1>
-      <a
-        href="/catalogo"
-        title="Vedi tutte le ricette"
-        ariaLabel="Vedi tutte le ricette"
-      >
+      {/* todo: implementare aria-label */}
+      <Link to="/catalogo" title="Vedi tutte le ricette">
         Vai al catalogo
-      </a>
+      </Link>
     </div>
   );
 };
