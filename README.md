@@ -20,7 +20,7 @@ yarn add -D [lib]
 
 Creare usando CRA una applicazione. Inserire "React router" come dipendenza e implementare un routing che permetta di:
 
-- Mostrare <HomePage /> in "/";
-- Mostrare <CatalogPage /> in "/catalogo";
-- Mostrare <ErrorPage /> in tutti gli altri casi(miro);
-- Creare una <Navbar /> visibile su tutte le pagine;
+- Mostrare `<HomePage />` in "/";
+- Mostrare `<CatalogPage />` in "/catalogo";
+- Mostrare `<ErrorPage />` in tutti gli altri casi(miro);
+- Creare una `<Navbar />` visibile su tutte le pagine;
