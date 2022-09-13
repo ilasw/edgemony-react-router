@@ -7,14 +7,15 @@ export const CategoryListItem = (props) => {
 
   return (
     <li className={styles['CategoryListItem']}>
-      <img
-        className={styles.thumbnail}
-        src={category.strCategoryThumb}
-        alt={`preview of ${category.strCategory} category`}
-      />
+      <div className={styles['thumbnail-wrapper']}>
+        <img
+          className={styles.thumbnail}
+          src={category.strCategoryThumb}
+          alt={`preview of ${category.strCategory} category`}
+        />
+      </div>
       <div className={styles.content}>
         <h3 className={styles.title}>{category.strCategory}</h3>
-        <p className={styles.description}>{category.strCategoryDescription}</p>
       </div>
       <Link
         to={`/catalogo/${category.strCategory}`}
