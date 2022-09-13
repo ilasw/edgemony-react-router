@@ -24,3 +24,9 @@ Creare usando CRA una applicazione. Inserire "React router" come dipendenza e im
 - Mostrare `<CatalogPage />` in "/catalogo";
 - Mostrare `<ErrorPage />` in tutti gli altri casi(miro);
 - Creare una `<Navbar />` visibile su tutte le pagine;
+
+## Todo:
+
+- Scaricare dati da API
+- Aggiungere pagina di dettaglio con dati relativi
+- Sviluppare un po' di UI
