@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 export const Navbar = () => {
   const links = [
     { href: '/', label: 'Home', title: 'Vai alla home' },
-    { href: '/catalogo', label: 'Catalogo' },
+    // { href: '/catalogo', label: 'Catalogo' },
   ];
 
   // Destructoring di un object:
