@@ -1,3 +1,3 @@
 export * from './home/home.jsx';
-export * from './catalog/catalog.jsx';
+export * from './category/category.jsx';
 export * from './error/error.jsx';

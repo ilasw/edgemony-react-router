@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Home, Catalog, ErrorPage } from './pages';
+import { Home, Category, ErrorPage } from './pages';
 import { Navbar } from './components/navbar/navbar.jsx';
 
 export default function App() {
@@ -12,7 +12,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/catalogo" element={<Home />} />
-          <Route path="/catalogo/:categoryName" element={<Catalog />} />
+          <Route path="/catalogo/:categoryName" element={<Category />} />
           <Route
             path="/catalogo/:categoryName/new"
             element={<ErrorPage status={500} />}
