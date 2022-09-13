@@ -1,7 +1,7 @@
 import React from 'react';
 import { ENDPOINTS } from '../../utils/api/endpoints.js';
 import { useFetch } from '../../utils/api/use-fetch.js';
-import { Link } from 'react-router-dom';
+import { CategoryList } from '../../components/category-list/index.js';
 
 export const Home = () => {
   const { data, loading, error } = useFetch(ENDPOINTS.CATEGORIES);
@@ -14,19 +14,7 @@ export const Home = () => {
     <div>
       <h1>Home</h1>
       {data ? (
-        <ul>
-          {data.categories?.map?.((category) => (
-            <li key={category.idCategory}>
-              <Link to={`/catalogo/${category.strCategory}`}>
-                <img
-                  src={category.strCategoryThumb}
-                  alt={`preview of ${category.strCategory} category`}
-                />
-                <h3>{category.strCategory}</h3>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <CategoryList categories={data?.categories ?? []} />
       ) : (
         'Si è verificato un errore!'
       )}

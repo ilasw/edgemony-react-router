@@ -1,0 +1,43 @@
+.CategoryListItem {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  flex-flow: row nowrap;
+  gap: 1rem;
+  padding: 0.5rem;
+
+  &:hover {
+    background: #eee;
+  }
+
+  .thumbnail {
+    flex: 0;
+    max-width: 5rem;
+    width: auto;
+    height: 5rem;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .content {
+    flex: 1;
+  }
+
+  .title {
+    line-height: 1;
+    margin: 0 0 0.5rem;
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+
+  .link {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+  }
+}

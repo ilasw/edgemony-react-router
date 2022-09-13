@@ -18,15 +18,12 @@ yarn add -D [lib]
 
 ## Esercizio:
 
-Creare usando CRA una applicazione. Inserire "React router" come dipendenza e implementare un routing che permetta di:
+- scrivere il nostro custom hook `useFetch` che gestisca {loading, data, error}
+- pagina home: mostrare lista categorie
+- pagina categoria: mostrare lista ricette di categoria
+- Sviluppare un po' di UI che sia più carina della lezione
 
-- Mostrare `<HomePage />` in "/";
-- Mostrare `<CatalogPage />` in "/catalogo";
-- Mostrare `<ErrorPage />` in tutti gli altri casi(miro);
-- Creare una `<Navbar />` visibile su tutte le pagine;
+## Interessante:
 
-## Todo:
-
-- Scaricare dati da API
-- Aggiungere pagina di dettaglio con dati relativi
-- Sviluppare un po' di UI
+- https://reactjs.org/docs/hooks-custom.html
+- https://github.com/streamich/react-use
