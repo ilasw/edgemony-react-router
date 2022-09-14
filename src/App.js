@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react';
 import './style.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Home, Category, ErrorPage, TestPage } from './pages';
+import { Home, Category, ErrorPage, Recipe, TestPage } from './pages';
 import { Navbar } from './components/navbar/navbar.jsx';
 
 export const CounterContext = createContext(0);
@@ -16,10 +16,8 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/catalogo" element={<Home />} />
           <Route path="/catalogo/:categoryName" element={<Category />} />
-          <Route
-            path="/catalogo/:categoryName/:status/:name"
-            element={<Category />}
-          />
+          <Route path="/catalogo/:categoryName/:recipeName/:id"
+          element={<Recipe />} />
           <Route
             path="/catalogo/:categoryName/new"
             element={<ErrorPage status={500} />}

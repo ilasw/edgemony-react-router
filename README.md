@@ -30,7 +30,7 @@ yarn add -D [lib]
 
 # todo:
 
-- vedere cos'è useContext
+- vedere cos'è useContext [ok]
 - formattare i dati della singola ricetta
 - pagina di dettaglio ricetta
 - (opt.) creare form ricerca
