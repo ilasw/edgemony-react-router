@@ -14,9 +14,7 @@ export const MealListItem = (props) => {
               alt={`preview of ${meal.strCategory} recipe`}
           />
         </div>
-        <div className={styles.content}>
-          <h3 className={styles.title}>{meal.strMeal}</h3>
-        </div>
+        <h3 className={styles.title}>{meal.strMeal}</h3>
         <Link to={`/catalogo/${categoryName}/${meal.strMeal}`}
               title={`naviga sul catalogo ${meal.strMeal}`}
               className={styles.link}

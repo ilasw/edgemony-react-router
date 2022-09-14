@@ -1,0 +1,6 @@
+.grid{
+  display: grid;
+  grid-template: auto / repeat(3, 1fr);
+  list-style: none;
+  gap: .5rem 1rem;
+}
