@@ -27,3 +27,11 @@ yarn add -D [lib]
 
 - https://reactjs.org/docs/hooks-custom.html
 - https://github.com/streamich/react-use
+
+# todo:
+
+- vedere cos'è useContext
+- formattare i dati della singola ricetta
+- pagina di dettaglio ricetta
+- (opt.) creare form ricerca
+- Scrivere poca UI
