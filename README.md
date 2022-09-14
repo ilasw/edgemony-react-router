@@ -33,5 +33,5 @@ yarn add -D [lib]
 - vedere cos'è useContext [ok]
 - formattare i dati della singola ricetta
 - pagina di dettaglio ricetta
-- (opt.) creare form ricerca
+- Inserire usando sub-routes delle tab contententi: Istruzioni, Ingredienti, video di YouTube
 - Scrivere poca UI

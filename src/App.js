@@ -3,21 +3,29 @@ import './style.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Home, Category, ErrorPage, Recipe, TestPage } from './pages';
 import { Navbar } from './components/navbar/navbar.jsx';
+import { YouTubePlayer } from './components/youtube-player/youtube.jsx';
 
 export const CounterContext = createContext(0);
 
 export default function App() {
-  const [state, setState] = useState(0)
+  const [state, setState] = useState(0);
   return (
-    <CounterContext.Provider value={{state, setState}}>
+    <CounterContext.Provider value={{ state, setState }}>
       <BrowserRouter>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/catalogo" element={<Home />} />
-          <Route path="/catalogo/:categoryName" element={<Category />} />
-          <Route path="/catalogo/:categoryName/:recipeName/:id"
-          element={<Recipe />} />
+
+          <Route path="/catalogo/:categoryName">
+            <Route index element={<Category />} />
+
+            <Route path=":recipeName/:id" element={<Recipe />}>
+              <Route path="" element={'Sei nella index della ricetta'} />
+              <Route path="youtube" element={<YouTubePlayer />} />
+            </Route>
+          </Route>
+
           <Route
             path="/catalogo/:categoryName/new"
             element={<ErrorPage status={500} />}

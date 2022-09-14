@@ -1,10 +1,10 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Outlet } from 'react-router-dom';
 import { ENDPOINTS } from '../../utils/api/endpoints';
 import { useFetch } from '../../utils/api/use-fetch';
 
 const formatRecipe = (data) => {
-  const initialRecipe = data.meals.at(0);
+  const initialRecipe = data.meals?.at(0) ?? {};
 
   const ingredients = [];
   for (let i = 1; i <= 20; i++) {
@@ -25,21 +25,45 @@ const formatRecipe = (data) => {
   // })
   // .filter(ingredient => !!ingredient.name?.length); // n -> 2n
 
-  console.log(ingredients);
-  return null;
+  return {
+    name: initialRecipe.strMeal,
+    id: initialRecipe.idMeal,
+    youtubeUrl: initialRecipe.strYoutube,
+    thumbnailSrc: initialRecipe.strMealThumb,
+    tags: initialRecipe.strTags,
+    instructions: initialRecipe.strInstructions,
+    ingredients,
+  };
 };
 
 export const Recipe = (props) => {
+  const { tab } = props;
   const { categoryName, recipeName, id } = useParams();
-  const { data, loading, error } = useFetch(`${ENDPOINTS.DETEAIL}?i=${id}`);
+  const { data, loading, error } = useFetch(
+    `${ENDPOINTS.DETEAIL}?i=${id}`,
+    formatRecipe
+  );
 
-  if (data?.meals) {
-    console.log(formatRecipe(data));
+  if (!data) {
+    return 'loading...';
   }
 
   return (
     <div>
-      {categoryName} -{recipeName}
+      <h1>
+        {categoryName} -{recipeName}
+      </h1>
+
+      <ul>
+        <li>Istruzioni</li>
+        <li>Ingredienti</li>
+        <li>YouTube</li>
+      </ul>
+
+      <Outlet context={data} />
+
+      {/* {tab === 'youtube' && <p>{data.youtubeUrl}</p>}
+      {tab === 'instructions' && <p>{data.instructions}</p>} */}
     </div>
   );
 };
