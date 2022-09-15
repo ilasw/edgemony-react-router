@@ -1,7 +1,7 @@
 import React from 'react';
 import { useOutletContext } from 'react-router-dom';
 
-export const YouTubePlayer = (props) => {
+export const RecipeYouTube = (props) => {
   const recipe = useOutletContext();
   const { youtubeUrl } = recipe;
 

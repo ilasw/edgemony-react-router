@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const Navbar = () => {
   const links = [
@@ -20,13 +20,15 @@ export const Navbar = () => {
             <NavLink
               to={href}
               title={title ? title : label}
-              style={({ isActive }) => ({
-                pointerEvents: isActive ? 'none' : 'auto',
-                opacity: isActive ? 0.4 : 1,
-              })}
-              className={({ isActive }) =>
-                isActive ? 'nav nav--active' : 'nav'
-              }
+              style={(isActive) => {
+                console.log(isActive);
+
+                return {
+                  pointerEvents: isActive ? 'none' : 'auto',
+                  opacity: isActive ? 0.4 : 1,
+                };
+              }}
+              className={(isActive) => (isActive ? 'nav nav--active' : 'nav')}
             >
               {label}
             </NavLink>

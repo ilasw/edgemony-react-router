@@ -17,8 +17,19 @@ yarn add -D [lib]
 ```
 
 ## Esercizio:
+
 - vedere cos'è useContext [ok]
-- formattare i dati della singola ricetta
-- pagina di dettaglio ricetta
+- formattare i dati della singola ricetta [ok]
+- pagina di dettaglio ricetta [ok]
 - Inserire usando sub-routes delle tab contententi: Istruzioni, Ingredienti, video di YouTube
 - Scrivere poca UI
+
+## Todo:
+
+- Esercizio di ieri
+- Link [end]
+- Navigate e useNavigate
+- useSearchParams
+- props nei link, useLocation
+- Route guards
+-

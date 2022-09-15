@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import './style.css';
+import './style.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Home, Category, ErrorPage, Recipe, TestPage } from './pages';
 import { Navbar } from './components/navbar/navbar.jsx';
@@ -15,14 +15,17 @@ export default function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/catalogo" element={<Home />} />
 
-          <Route path="/catalogo/:categoryName">
-            <Route index element={<Category />} />
+          <Route path="/catalogo">
+            <Route index element={<Home />} />
 
-            <Route path=":recipeName/:id" element={<Recipe />}>
-              <Route path="" element={'Sei nella index della ricetta'} />
-              <Route path="youtube" element={<YouTubePlayer />} />
+            <Route path=":categoryName">
+              <Route path="" element={<Category />} />
+
+              <Route path=":recipeName/:id" element={<Recipe />}>
+                <Route path="" element={'Sei nella index della ricetta'} />
+                <Route path="youtube" element={<YouTubePlayer />} />
+              </Route>
             </Route>
           </Route>
 

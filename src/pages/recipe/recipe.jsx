@@ -1,70 +1,76 @@
 import React from 'react';
-import { useParams, Outlet } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { ENDPOINTS } from '../../utils/api/endpoints';
 import { useFetch } from '../../utils/api/use-fetch';
 
-const formatRecipe = (data) => {
-  const initialRecipe = data.meals?.at(0) ?? {};
-
-  const ingredients = [];
-  for (let i = 1; i <= 20; i++) {
-    const name = initialRecipe[`strIngredient${i}`];
-    const value = initialRecipe[`strMeasure${i}`];
-
-    if (!name?.length) {
-      continue;
-    }
-
-    ingredients.push({ name, value });
-  } // n -> n
-
-  // const ingredientsKeys = Array.from(new Array(20), (_, index) => {
-  //   const name = initialRecipe[`strIngredient${i + 1}`];
-  //   const value = initialRecipe[`strMeasure${i + 1}`];
-  //   return { name, value };
-  // })
-  // .filter(ingredient => !!ingredient.name?.length); // n -> 2n
-
-  return {
-    name: initialRecipe.strMeal,
-    id: initialRecipe.idMeal,
-    youtubeUrl: initialRecipe.strYoutube,
-    thumbnailSrc: initialRecipe.strMealThumb,
-    tags: initialRecipe.strTags,
-    instructions: initialRecipe.strInstructions,
-    ingredients,
-  };
-};
-
 export const Recipe = (props) => {
-  const { tab } = props;
   const { categoryName, recipeName, id } = useParams();
-  const { data, loading, error } = useFetch(
-    `${ENDPOINTS.DETEAIL}?i=${id}`,
-    formatRecipe
-  );
+  const { data, loading, error } = useFetch(`${ENDPOINTS.DETEAIL}?i=${id}`);
+  const indexes = Array.from({ length: 20 }, (_, i) => i + 1);
+  const recipe = data?.meals?.at(0) ?? null;
 
-  if (!data) {
+  if (!data || loading) {
     return 'loading...';
   }
 
+  console.log(data);
+
   return (
-    <div>
-      <h1>
-        {categoryName} -{recipeName}
-      </h1>
+    <>
+      <div className="container">
+        <header>
+          <div className="row">
+            <div className="col-auto">
+              <figure>
+                <img width={100} src={recipe.strMealThumb} alt={recipeName} />
+              </figure>
+            </div>
+            <div className="col">
+              <h2 className={'fs-6'}>
+                <Link to={`/catalogo/${categoryName}`}>{categoryName}</Link>
+              </h2>
+              <h1 className={'fs-2'}>{recipeName}</h1>
+            </div>
+          </div>
+        </header>
 
-      <ul>
-        <li>Istruzioni</li>
-        <li>Ingredienti</li>
-        <li>YouTube</li>
-      </ul>
+        <ul className="nav nav-tabs mb-5">
+          <li className="nav-item">
+            <a className="nav-link active" aria-current="page" href="#">
+              Active
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#">
+              Link
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#">
+              Link
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link disabled">Disabled</a>
+          </li>
+        </ul>
 
-      <Outlet context={data} />
+        {!!recipe &&
+          indexes.map((index) => (
+            <div>
+              {recipe[`strIngredient${index}`]?.length ? (
+                <>
+                  {recipe[`strIngredient${index}`]}:
+                  {recipe[`strMeasure${index}`]}
+                </>
+              ) : null}
+            </div>
+          ))}
 
-      {/* {tab === 'youtube' && <p>{data.youtubeUrl}</p>}
+        {/* {tab === 'youtube' && <p>{data.youtubeUrl}</p>}
       {tab === 'instructions' && <p>{data.instructions}</p>} */}
-    </div>
+      </div>
+    </>
   );
 };
 
