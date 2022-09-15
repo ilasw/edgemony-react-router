@@ -26,10 +26,10 @@ yarn add -D [lib]
 
 ## Todo:
 
-- Esercizio di ieri
-- Link [end]
-- Navigate e useNavigate
+- Esercizio di ieri [ok]
+- Navigate e useNavigate [ok]
+- Link [ok]
+- Nuova cose su 6.4 []
 - useSearchParams
 - props nei link, useLocation
 - Route guards
--

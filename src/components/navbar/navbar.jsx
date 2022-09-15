@@ -18,13 +18,13 @@ export const Navbar = () => {
         {links.map(({ href, label, title }) => (
           <li key={href}>
             <NavLink
+              end
               to={href}
               title={title ? title : label}
               style={({ isActive, isPending }) => {
-                console.log(isActive);
-
                 return {
-                  pointerEvents: isActive ? 'none' : 'auto',
+                  color: isPending ? 'red' : 'currentColor',
+                  pointerEvents: isActive || isPending ? 'none' : 'auto',
                   opacity: isActive ? 0.4 : 1,
                 };
               }}

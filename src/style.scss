@@ -2,3 +2,13 @@
 @import '~bootstrap/scss/bootstrap-grid';
 @import '~bootstrap/scss/bootstrap-utilities';
 @import '~bootstrap/scss/nav';
+
+a {
+  color: currentColor;
+  text-decoration: underline;
+
+  &:hover {
+    color: green;
+    text-decoration: none;
+  }
+}

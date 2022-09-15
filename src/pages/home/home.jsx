@@ -1,12 +1,12 @@
 import React from 'react';
-import { ENDPOINTS } from '../../utils/api/endpoints.js';
-import { useFetch } from '../../utils/api/use-fetch.js';
+import { useLoaderData } from 'react-router-dom';
 import { CategoryList } from '../../components/category-list/index.js';
 
 export const Home = () => {
-  const { data, loading, error } = useFetch(ENDPOINTS.CATEGORIES);
+  const data = useLoaderData();
+  console.log('sono in home', data);
 
-  if (loading) {
+  if (!data) {
     return 'Loading...';
   }
 
