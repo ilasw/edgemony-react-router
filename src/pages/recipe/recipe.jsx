@@ -1,13 +1,18 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { Outlet, useParams, Link, NavLink } from 'react-router-dom';
 import { ENDPOINTS } from '../../utils/api/endpoints';
 import { useFetch } from '../../utils/api/use-fetch';
 
 export const Recipe = (props) => {
   const { categoryName, recipeName, id } = useParams();
   const { data, loading, error } = useFetch(`${ENDPOINTS.DETEAIL}?i=${id}`);
-  const indexes = Array.from({ length: 20 }, (_, i) => i + 1);
   const recipe = data?.meals?.at(0) ?? null;
+
+  const tabs = [
+    { label: 'Ricetta', path: './istruzioni' },
+    { label: 'Ingredienti', path: './ingredienti' },
+    { label: 'YouTube', path: './youtube' },
+  ];
 
   if (!data || loading) {
     return 'loading...';
@@ -34,41 +39,23 @@ export const Recipe = (props) => {
           </div>
         </header>
 
-        <ul className="nav nav-tabs mb-5">
-          <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href="#">
-              Active
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">
-              Link
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">
-              Link
-            </a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link disabled">Disabled</a>
-          </li>
-        </ul>
-
-        {!!recipe &&
-          indexes.map((index) => (
-            <div>
-              {recipe[`strIngredient${index}`]?.length ? (
-                <>
-                  {recipe[`strIngredient${index}`]}:
-                  {recipe[`strMeasure${index}`]}
-                </>
-              ) : null}
-            </div>
+        <ul className="nav nav-tabs">
+          {tabs.map(({ label, path }) => (
+            <li className="nav-item" key={path}>
+              <NavLink
+                className={({ isActive }) =>
+                  `nav-link ${isActive ? 'active' : 'not-active'}`
+                }
+                to={path}
+              >
+                {label}
+              </NavLink>
+            </li>
           ))}
+        </ul>
+        <Outlet context={recipe} />
 
-        {/* {tab === 'youtube' && <p>{data.youtubeUrl}</p>}
-      {tab === 'instructions' && <p>{data.instructions}</p>} */}
+        {/* {} */}
       </div>
     </>
   );

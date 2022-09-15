@@ -1,9 +1,11 @@
 import React, { createContext, useState } from 'react';
 import './style.scss';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Home, Category, ErrorPage, Recipe, TestPage } from './pages';
 import { Navbar } from './components/navbar/navbar.jsx';
-import { YouTubePlayer } from './components/youtube-player/youtube.jsx';
+import { RecipeYouTube } from './components/recipe-youtube/recipe-youtube.jsx';
+import { RecipeInstructions } from './components/recipe-instructions/recipe-instructions.jsx';
+import { RecipeIngredients } from './components/recipe-ingredients/recipe-ingredients.jsx';
 
 export const CounterContext = createContext(0);
 
@@ -17,14 +19,16 @@ export default function App() {
           <Route path="/" element={<Home />} />
 
           <Route path="/catalogo">
-            <Route index element={<Home />} />
+            <Route index element={<Navigate to="/" />} />
 
             <Route path=":categoryName">
               <Route path="" element={<Category />} />
 
               <Route path=":recipeName/:id" element={<Recipe />}>
-                <Route path="" element={'Sei nella index della ricetta'} />
-                <Route path="youtube" element={<YouTubePlayer />} />
+                <Route path="" element={<Navigate to="./istruzioni" />} />
+                <Route path="istruzioni" element={<RecipeInstructions />} />
+                <Route path="youtube" element={<RecipeYouTube />} />
+                <Route path="ingredienti" element={<RecipeIngredients />} />
               </Route>
             </Route>
           </Route>

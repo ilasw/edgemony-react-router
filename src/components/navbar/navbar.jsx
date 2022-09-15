@@ -20,7 +20,7 @@ export const Navbar = () => {
             <NavLink
               to={href}
               title={title ? title : label}
-              style={(isActive) => {
+              style={({ isActive, isPending }) => {
                 console.log(isActive);
 
                 return {
@@ -28,7 +28,9 @@ export const Navbar = () => {
                   opacity: isActive ? 0.4 : 1,
                 };
               }}
-              className={(isActive) => (isActive ? 'nav nav--active' : 'nav')}
+              className={({ isActive }) =>
+                isActive ? 'nav nav--active' : 'nav'
+              }
             >
               {label}
             </NavLink>
