@@ -6,11 +6,16 @@ import { Navbar } from './components/navbar/navbar.jsx';
 export const CounterContext = createContext(0);
 
 export default function App() {
-  const [state, setState] = useState(0);
   return (
-    <CounterContext.Provider value={{ state, setState }}>
-      <Navbar />
-      <Outlet />
-    </CounterContext.Provider>
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-auto">
+          <Navbar />
+        </div>
+        <div className="col">
+          <Outlet />
+        </div>
+      </div>
+    </div>
   );
 }

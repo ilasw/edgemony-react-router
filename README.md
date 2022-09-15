@@ -18,18 +18,12 @@ yarn add -D [lib]
 
 ## Esercizio:
 
-- vedere cos'è useContext [ok]
-- formattare i dati della singola ricetta [ok]
-- pagina di dettaglio ricetta [ok]
-- Inserire usando sub-routes delle tab contententi: Istruzioni, Ingredienti, video di YouTube
-- Scrivere poca UI
+- Scrivere il router seguendo il metodo `createBrowserRouter` della versione 6.4;
+- aggiungere loader per ogni rotta che richiede dati al server;
+- usare navigate per spostarsi dalle rotte "morte" come "/catalogo" o la index della ricetta;
 
 ## Todo:
 
-- Esercizio di ieri [ok]
-- Navigate e useNavigate [ok]
-- Link [ok]
-- Nuova cose su 6.4 []
 - useSearchParams
 - props nei link, useLocation
 - Route guards

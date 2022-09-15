@@ -24,7 +24,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
-        loader: async ({ params }) => {
+        loader: async () => {
           return fetch(ENDPOINTS.CATEGORIES);
         },
       },
@@ -39,9 +39,7 @@ const router = createBrowserRouter([
             path: '',
             element: <Category />,
             loader: ({ params }) => {
-              return fetch(
-                `${ENDPOINTS.FILTER}?c=${params?.categoryName}`
-              );
+              return fetch(`${ENDPOINTS.FILTER}?c=${params?.categoryName}`);
             },
           },
           {
