@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './category-list-item.module.scss';
 
 export const CategoryListItem = (props) => {
   const { category } = props;
+  const [isImgLoaded, setImgLoaded] = useState(false);
 
   return (
     <li className={styles['CategoryListItem']}>
       <div className={styles['thumbnail-wrapper']}>
         <img
-          className={styles.thumbnail}
+          className={`${styles.thumbnail} ${
+            !isImgLoaded ? styles.loading : ''
+          }`}
+          loading="lazy"
+          onLoad={() => setImgLoaded(true)}
+          style={{ opacity: isImgLoaded ? '1' : '.5' }}
           src={category.strCategoryThumb}
           alt={`preview of ${category.strCategory} category`}
         />
@@ -27,3 +33,5 @@ export const CategoryListItem = (props) => {
     </li>
   );
 };
+
+export default CategoryListItem;

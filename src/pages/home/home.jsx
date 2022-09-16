@@ -1,23 +1,20 @@
-import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { Suspense } from 'react';
+import { useLoaderData, Await } from 'react-router-dom';
 import { CategoryList } from '../../components/category-list/index.js';
 
 export const Home = () => {
-  const data = useLoaderData();
-  console.log('sono in home', data);
-
-  if (!data) {
-    return 'Loading...';
-  }
+  const { categories } = useLoaderData();
 
   return (
     <div>
-      <h1>Home</h1>
-      {data ? (
-        <CategoryList categories={data?.categories ?? []} />
-      ) : (
-        'Si è verificato un errore!'
-      )}
+      <Suspense fallback={<div style={{ color: 'red' }}>Loading...</div>}>
+        <Await
+          resolve={categories}
+          errorElement={<div>Could not load reviews 😬</div>}
+        >
+          {(categories) => <CategoryList categories={categories} />}
+        </Await>
+      </Suspense>
     </div>
   );
 };

@@ -16,6 +16,35 @@ import { ENDPOINTS } from './utils/api/endpoints.js';
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
 
+const catalogRouter = [
+  {
+    path: '/catalogo',
+    element: <Navigate to={'/'} />,
+  },
+  {
+    path: '/catalogo/:categoryName',
+    children: [
+      {
+        path: '',
+        element: <Category />,
+        loader: ({ params }) => {
+          return fetch(`${ENDPOINTS.FILTER}?c=${params?.categoryName}`);
+        },
+      },
+      {
+        path: ':recipeName/:id',
+        element: <Recipe />,
+        children: [
+          { path: '', element: <div>Pagina principale</div> },
+          { path: 'ingredienti', element: <RecipeIngredients /> },
+          { path: 'istruzioni', element: <RecipeInstructions /> },
+          { path: 'youtube', element: <RecipeYouTube /> },
+        ],
+      },
+    ],
+  },
+];
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -28,32 +57,7 @@ const router = createBrowserRouter([
           return fetch(ENDPOINTS.CATEGORIES);
         },
       },
-      {
-        path: '/catalogo',
-        element: <Navigate to={'/'} />,
-      },
-      {
-        path: '/catalogo/:categoryName',
-        children: [
-          {
-            path: '',
-            element: <Category />,
-            loader: ({ params }) => {
-              return fetch(`${ENDPOINTS.FILTER}?c=${params?.categoryName}`);
-            },
-          },
-          {
-            path: ':recipeName/:id',
-            element: <Recipe />,
-            children: [
-              { path: '', element: <div>Pagina principale</div> },
-              { path: 'ingredienti', element: <RecipeIngredients /> },
-              { path: 'istruzioni', element: <RecipeInstructions /> },
-              { path: 'youtube', element: <RecipeYouTube /> },
-            ],
-          },
-        ],
-      },
+      ...catalogRouter,
       { path: '/test', element: <TestPage /> },
       { path: '*', element: <ErrorPage status={404} /> },
     ],

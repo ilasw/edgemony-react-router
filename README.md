@@ -24,6 +24,16 @@ yarn add -D [lib]
 
 ## Todo:
 
+- loading con Suspense [ok]
+- Lazy loading dinamico 
 - useSearchParams
 - props nei link, useLocation
 - Route guards
+
+## Interessante da guardare
+
+- Lazy loading https://developer.mozilla.org/en-US/docs/Web/Performance/Lazy_loading
+- Lazy loading in reac https://reactjs.org/docs/code-splitting.html
+- Metriche su performance: https://www.cloudflare.com/it-it/learning/performance/more/website-performance-conversion-rates/
+- Skeleton in react https://skeletonreact.com/
+- Controllare onload img per caricamento figo immagini
