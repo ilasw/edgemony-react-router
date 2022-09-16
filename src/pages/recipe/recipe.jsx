@@ -1,9 +1,24 @@
 import React from 'react';
-import { Outlet, useParams, Link, NavLink } from 'react-router-dom';
+import {
+  Outlet,
+  useParams,
+  Link,
+  NavLink,
+  useLocation,
+} from 'react-router-dom';
 import { ENDPOINTS } from '../../utils/api/endpoints';
 import { useFetch } from '../../utils/api/use-fetch';
 
 export const Recipe = (props) => {
+  const { state } = useLocation();
+  React.useEffect(() => {
+    if (!state) {
+      console.log('accesso diretto');
+      return;
+    }
+    console.log({ state });
+  }, [state]);
+
   const { categoryName, recipeName, id } = useParams();
   const { data, loading, error } = useFetch(`${ENDPOINTS.DETEAIL}?i=${id}`);
   const recipe = data?.meals?.at(0) ?? null;

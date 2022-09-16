@@ -6,10 +6,11 @@ import {
   Navigate,
 } from 'react-router-dom';
 import App from './App.js';
-import { Home, Category, ErrorPage, Recipe, TestPage } from './pages';
+import { Category, ErrorPage, Recipe, TestPage } from './pages';
 import { RecipeYouTube } from './components/recipe-youtube/recipe-youtube.jsx';
 import { RecipeInstructions } from './components/recipe-instructions/recipe-instructions.jsx';
 import { RecipeIngredients } from './components/recipe-ingredients/recipe-ingredients.jsx';
+import { AuthGuard } from './components/auth-guard/auth-guard.jsx';
 
 import { ENDPOINTS } from './utils/api/endpoints.js';
 
@@ -45,6 +46,8 @@ const catalogRouter = [
   },
 ];
 
+const LazyHome = React.lazy(() => import('./pages/home/home.jsx'));
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -52,13 +55,24 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Home />,
+        element: (
+          <React.Suspense fallback="loading home...">
+            <LazyHome />
+          </React.Suspense>
+        ),
         loader: async () => {
           return fetch(ENDPOINTS.CATEGORIES);
         },
       },
       ...catalogRouter,
-      { path: '/test', element: <TestPage /> },
+      {
+        path: '/test',
+        element: (
+          <AuthGuard>
+            <TestPage />
+          </AuthGuard>
+        ),
+      },
       { path: '*', element: <ErrorPage status={404} /> },
     ],
   },

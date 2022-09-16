@@ -18,17 +18,19 @@ yarn add -D [lib]
 
 ## Esercizio:
 
-- Scrivere il router seguendo il metodo `createBrowserRouter` della versione 6.4;
-- aggiungere loader per ogni rotta che richiede dati al server;
-- usare navigate per spostarsi dalle rotte "morte" come "/catalogo" o la index della ricetta;
+- usare `useSearchParams` per implementare una paginazione in `Home` che abbia i pulsanti "Prev" e "Next";
+- Inserire nella pagina `Recipe` il componente in versione lazy;
+- Mettere in almeno una pagina il loading del data di `loader` usando Suspense e Await;
+- (opt) Usare state nei link, per stampare in log la pagina di provenienza;
+- (opt) provare ad implementare delle Route guards;
 
 ## Todo:
 
-- loading con Suspense [ok]
-- Lazy loading dinamico 
-- useSearchParams
-- props nei link, useLocation
-- Route guards
+- useSearchParams [ok]
+- loading con Suspense [ok] Await
+- Lazy loading dinamico [ok] React.lazy
+- state nei link, useLocation [ok]
+- Route guards [ok]
 
 ## Interessante da guardare
 
@@ -37,3 +39,7 @@ yarn add -D [lib]
 - Metriche su performance: https://www.cloudflare.com/it-it/learning/performance/more/website-performance-conversion-rates/
 - Skeleton in react https://skeletonreact.com/
 - Controllare onload img per caricamento figo immagini
+- Tree shaking: https://en.wikipedia.org/wiki/Tree_shaking
+- Bundlephobia: https://bundlephobia.com/
+- [withAuth]
+- JWT per l'authentication

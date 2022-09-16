@@ -19,6 +19,7 @@ export const MealListItem = (props) => {
         to={`/catalogo/${categoryName}/${meal.strMeal}/${meal.idMeal}`}
         title={`naviga sul catalogo ${meal.strMeal}`}
         className={styles.link}
+        state={{ meal, categoryName }}
       >
         {meal.strMeal}
       </Link>
